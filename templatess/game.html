@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Tic Tac Toe</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://fonts.googleapis.com/css?family=Dancing+Script|Great+Vibes|Lobster" rel="stylesheet">
+        <style>
+        .container{
+          display: flex;
+          flex-wrap: wrap;
+        }
+        .container>div{
+
+        }
+            table {
+                border-collapse: collapse;
+            }
+            td {
+                border: 1px solid black;
+                width: 150px;
+                height: 150px;
+                font-size: 30px;
+                text-align: center;
+            }
+            td > a {
+                font-size: 18px;
+            }
+            .info{
+              text-align: center;
+              color: red;
+              border-radius: 20px;
+              padding: 20px;
+              margin-bottom: 10px;
+              font-family: cursive;
+            }
+            .score{
+              text-align: center;
+              color: red;
+              border-radius: 20px;
+              padding: 20px;
+              margin-bottom: 10px;
+              font-family: cursive;
+            }
+        </style>
+    </head>
+    <body>
+      <div class="container">
+      <div class="info">
+        <h2>Hello {{ username }}, you are playing against Siddharth</h2>
+      </div>
+      <div class="game">
+        <center><table>
+          {% block table %}
+            {% for i in range(3) %}
+              <tr>
+                  {% for j in range(3) %}
+                      <td>
+                          {% if game[i][j] %}
+                              {{ game[i][j] }}
+                          {% elif not winner %}
+                              <a href="{{ url_for('play', row=i, col=j) }}">Play X here.</a>
+                          {% elif winner %}
+                          __
+                          {% endif %}
+                      </td>
+                  {% endfor %}
+              </tr>
+            {% endfor %}
+          {% endblock %}
+        </table></center>
+      </div>
+      <div class="score">
+        <h3>Scoreboard</h3>
+        <h4>score of Siddharth : {{ sc }}</h4>
+        <h4>score of {{ username }} : {{ su }}</h4>
+      </div>
+      </div>
+    </body>
+
+</html>
